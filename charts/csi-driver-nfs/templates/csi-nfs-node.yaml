@@ -22,7 +22,7 @@ spec:
       imagePullSecrets:
 {{ toYaml .Values.imagePullSecrets | indent 8 }}
       {{- end }}
-      hostNetwork: false # original nfs connection would be broken without hostNetwork setting
+      hostNetwork: {{ .Values.node.hostNetwork | default true }} # original nfs connection would be broken without hostNetwork setting
       dnsPolicy: {{ .Values.controller.dnsPolicy }}
       serviceAccountName: csi-nfs-node-sa
 {{- with .Values.node.affinity }}
