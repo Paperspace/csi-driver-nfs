@@ -19,9 +19,7 @@ spec:
       imagePullSecrets:
 {{ toYaml .Values.imagePullSecrets | indent 8 }}
       {{- end }}
-      {{- if .Values.conroller.hostNetwork }}
-      hostNetwork: true  # controller also needs to mount nfs to create dir
-      {{- end }}
+      hostNetwork: false   # controller also needs to mount nfs to create dir
       dnsPolicy: {{ .Values.controller.dnsPolicy }}
       serviceAccountName: {{ .Values.serviceAccount.controller }}
 {{- with .Values.controller.affinity }}
